@@ -1,13 +1,9 @@
-//function for setting the last login
 function set_last_login($login) {
     $user = get_userdatabylogin($login);
     $curent_login_time = get_user_meta( $user->ID , 'current_login', true);
-    //add or update the last login value for logged in user
     if(!empty($curent_login_time)){
-        update_usermeta( $user->ID, 'last_login', $curent_login_time );
         update_usermeta( $user->ID, 'current_login', current_time('mysql') );
     }else {
         update_usermeta( $user->ID, 'current_login', current_time('mysql') );
-        update_usermeta( $user->ID, 'last_login', current_time('mysql') );
     }
 }
